@@ -12,13 +12,14 @@ namespace GenericOps
 
         public async Task<int> DeleteEntity(T entity)
         {
-            // T? entity = _dbset.Where<T>(filter).FirstOrDefault();
+          // T? entity = _dbset.Where<T>(filter).FirstOrDefault();
             Func<int, int> funcDelete;
             EntityEntry<T>? entityEntry;
 
             entityEntry = _dbset.Remove(entity);
             funcDelete = (param) => ((int)entityEntry.State);
-            return ((int)entityEntry.State);
+
+            return await _Context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAll(Func<T, bool>? predicate = null)

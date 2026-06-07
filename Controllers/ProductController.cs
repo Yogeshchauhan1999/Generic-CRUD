@@ -70,7 +70,8 @@ namespace GenericOps.Controllers
         [Route("DeleteEntityAsync")]
         public async Task<string> DeleteEntityAsync(int productId)
         {
-            Product product = await _productRepository.GetByIdAsync(p=>
+            Product product = new();
+            product= await _productRepository.GetByIdAsync(p=>
             p.ProductId==productId,p=>p);
 
            int? deleteStatus= await _productRepository.DeleteEntity(product);
