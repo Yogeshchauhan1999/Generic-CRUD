@@ -1,8 +1,34 @@
 [
   {
-    "ContainingType": "GenericOps.Controllers.GenericsController",
+    "ContainingType": "GenericOps.Controllers.ProductController",
+    "Method": "DeleteEntityAsync",
+    "RelativePath": "api/Product/DeleteEntityAsync",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GenericOps.Controllers.ProductController",
     "Method": "GetSingleProduct",
-    "RelativePath": "api/Generics/GetProductDetails",
+    "RelativePath": "api/Product/GetProductDetails",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -16,9 +42,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GenericOps.Controllers.GenericsController",
+    "ContainingType": "GenericOps.Controllers.ProductController",
     "Method": "GetProductsAsync",
-    "RelativePath": "api/Generics/GetProductsAsync",
+    "RelativePath": "api/Product/GetProductsAsync",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -26,9 +52,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GenericOps.Controllers.GenericsController",
+    "ContainingType": "GenericOps.Controllers.ProductController",
     "Method": "PostProductAsync",
-    "RelativePath": "api/Generics/PostProductAsync",
+    "RelativePath": "api/Product/PostProductAsync",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -42,9 +68,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "GenericOps.Controllers.GenericsController",
+    "ContainingType": "GenericOps.Controllers.ProductController",
     "Method": "UpdateProductAsync",
-    "RelativePath": "api/Generics/UpdateProductAsync",
+    "RelativePath": "api/Product/UpdateProductAsync",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,

@@ -9,22 +9,34 @@ namespace GenericOps
     {
         private readonly DbSet<T> _dbset = _Context.Set<T>();
         Func<int, int> funcdelegate = (changes) => changes;
-        public async Task<IEnumerable<T>> GetAll(Func<T,bool>? predicate=null)
+
+        public async Task<int> DeleteEntity(T entity)
+        {
+            // T? entity = _dbset.Where<T>(filter).FirstOrDefault();
+            Func<int, int> funcDelete;
+            EntityEntry<T>? entityEntry;
+
+            entityEntry = _dbset.Remove(entity);
+            funcDelete = (param) => ((int)entityEntry.State);
+            return ((int)entityEntry.State);
+        }
+
+        public async Task<IEnumerable<T>> GetAll(Func<T, bool>? predicate = null)
         {
             IEnumerable<T> query = _dbset;
-            if(predicate  is not null)
+            if (predicate is not null)
             {
                 query = query.Where(predicate).ToList();
             }
-            return  query;
+            return query;
         }
 
-        public async Task<TResult?> 
+        public async Task<TResult?>
             GetByIdAsync<TResult>(Expression<Func<T, bool>>? predicate = null,
                                                          Expression<Func<T, TResult>>? selector = null)
         {
             IQueryable<T> query = _dbset;
-            if(predicate is not null)
+            if (predicate is not null)
             {
                 query = query.Where(predicate);
             }
@@ -32,10 +44,10 @@ namespace GenericOps
             return await query.Select(selector).FirstOrDefaultAsync();
         }
 
-      
+
 
         public async Task<int> PostEntity(T entity)
-        {      
+        {
             await _dbset.AddAsync(entity);
             int postResult = funcdelegate(await _Context.SaveChangesAsync());
             return postResult;
@@ -45,7 +57,7 @@ namespace GenericOps
 
         public async Task<int> UpdateEntity(Func<T, bool> filter, Action<T> updateAction)
         {
-            T? entity= _dbset.AsEnumerable().FirstOrDefault(filter);
+            T? entity = _dbset.AsEnumerable().FirstOrDefault(filter);
             updateAction(entity);
             _Context.Entry(entity).State = EntityState.Modified;
             return await _Context.SaveChangesAsync();

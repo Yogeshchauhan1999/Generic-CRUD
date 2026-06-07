@@ -9,9 +9,10 @@ using System.Reflection;
 
 namespace GenericOps.Controllers
 {
+    [RequireHttps]
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericsController(IRepository<Product> _productRepository) : ControllerBase
+    public class ProductController(IRepository<Product> _productRepository) : ControllerBase
     {
         [HttpGet("GetProductsAsync")]
         public async Task<ActionResult> GetProductsAsync()
@@ -63,6 +64,18 @@ namespace GenericOps.Controllers
             int updateResult = await _productRepository.UpdateEntity(predicate, updateAction);
             string message = updateResult > 0 ? "Product Updated successfully" : "Failed to update product";
             return Ok(message);
+        }
+
+        [HttpDelete]
+        [Route("DeleteEntityAsync")]
+        public async Task<string> DeleteEntityAsync(int productId)
+        {
+            Product product = await _productRepository.GetByIdAsync(p=>
+            p.ProductId==productId,p=>p);
+
+           int? deleteStatus= await _productRepository.DeleteEntity(product);
+
+            return deleteStatus.HasValue ? "Delete successfully" : "Failed to delete product";
         }
     }
 }

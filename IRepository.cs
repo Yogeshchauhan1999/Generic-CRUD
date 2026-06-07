@@ -13,5 +13,7 @@ namespace GenericOps
        );
 
         Task<int> UpdateEntity(Func<T,bool> filter,Action<T> updateAction);
+
+        Task<int> DeleteEntity(T entity);
     }
 }

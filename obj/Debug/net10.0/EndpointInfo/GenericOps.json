@@ -13,10 +13,10 @@
     }
   ],
   "paths": {
-    "/api/Generics/GetProductsAsync": {
+    "/api/Product/GetProductsAsync": {
       "get": {
         "tags": [
-          "Generics"
+          "Product"
         ],
         "responses": {
           "200": {
@@ -25,10 +25,10 @@
         }
       }
     },
-    "/api/Generics/PostProductAsync": {
+    "/api/Product/PostProductAsync": {
       "post": {
         "tags": [
-          "Generics"
+          "Product"
         ],
         "requestBody": {
           "content": {
@@ -57,10 +57,10 @@
         }
       }
     },
-    "/api/Generics/GetProductDetails": {
+    "/api/Product/GetProductDetails": {
       "get": {
         "tags": [
-          "Generics"
+          "Product"
         ],
         "parameters": [
           {
@@ -83,10 +83,10 @@
         }
       }
     },
-    "/api/Generics/UpdateProductAsync": {
+    "/api/Product/UpdateProductAsync": {
       "put": {
         "tags": [
-          "Generics"
+          "Product"
         ],
         "requestBody": {
           "content": {
@@ -111,6 +111,49 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Product/DeleteEntityAsync": {
+      "delete": {
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "query",
+            "schema": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }
@@ -268,7 +311,7 @@
   },
   "tags": [
     {
-      "name": "Generics"
+      "name": "Product"
     },
     {
       "name": "WeatherForecast"
