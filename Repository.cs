@@ -19,7 +19,8 @@ namespace GenericOps
             return  query;
         }
 
-        public async Task<TResult?> GetByIdAsync<TResult>(Expression<Func<T, bool>>? predicate = null,
+        public async Task<TResult?> 
+            GetByIdAsync<TResult>(Expression<Func<T, bool>>? predicate = null,
                                                          Expression<Func<T, TResult>>? selector = null)
         {
             IQueryable<T> query = _dbset;
